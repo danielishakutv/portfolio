@@ -29,6 +29,10 @@
 .input{width:100%;border:1px solid var(--slate-200);border-radius:.75rem;padding:.625rem .875rem;outline:none}
 .input:focus{box-shadow:0 0 0 2px rgba(16,185,129,.35);border-color:#99f6e4}
 
+/* Modal panel mobile scroll handling */
+#waitlistModal [data-modal-panel]{max-height:calc(100dvh - 2rem);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+@media (max-width:480px){#waitlistModal [data-modal-panel]{padding:1.25rem}}
+
 /* Currency switch dot */
 #currencySwitch{transition:background .2s ease}
 #currencySwitch[aria-checked="true"]{background:#a7f3d0}
