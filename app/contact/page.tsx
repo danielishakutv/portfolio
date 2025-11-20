@@ -1,12 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
-
-function ContactForm() {
-  const searchParams = useSearchParams()
-  const topic = searchParams?.get('topic') ? decodeURIComponent(searchParams.get('topic')!) : ''
-
+export default function ContactPage() {
   return (
     <main className="pt-24 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-3xl mx-auto px-6">
@@ -55,7 +49,6 @@ function ContactForm() {
               <input
                 type="text"
                 id="subject"
-                defaultValue={topic}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent"
                 placeholder="Project brief, consultation, etc."
               />
@@ -99,13 +92,5 @@ function ContactForm() {
         </form>
       </div>
     </main>
-  )
-}
-
-export default function ContactPage() {
-  return (
-    <Suspense fallback={<div className="pt-24 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900"><div className="max-w-3xl mx-auto px-6 text-center">Loading...</div></div>}>
-      <ContactForm />
-    </Suspense>
   )
 }
