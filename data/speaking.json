@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "jpi-impact-conference-2025-built-to-last",
+    "title": "Building Systems that Last: The Future of Sustainable Institutions",
+    "event": "JPI Impact Conference 2025",
+    "date": "2025-11-22",
+    "venue": "American University of Nigeria (AUN)",
+    "city": "Yola",
+    "country": "Nigeria",
+    "role": "Keynote Speaker",
+    "description": "The JPI Impact Conference (Adamawa State Chapter) brings together visionary leaders, innovators, and changemakers under the theme 'Built To Last' to explore how individuals and institutions can build enduring impact. Daniel Ishaku, CEO of Toko Academy, will deliver a keynote on 'Building Systems that Last: The Future of Sustainable Institutions,' sharing insights on designing scalable, human-centered systems, fostering innovation, and leading with purpose to create lasting impact.",
+    "tags": ["Leadership", "Innovation", "Sustainability", "Systems Thinking", "Digital Transformation", "Education", "Entrepreneurship"]
+  },
+  {
+    "slug": "devfest-2023-future-web",
+    "title": "The Future of Web Development",
+    "event": "DevFest 2023",
+    "date": "2023-11-05",
+    "venue": "International Conference Centre",
+    "city": "Abuja",
+    "country": "Nigeria",
+    "role": "Speaker",
+    "description": "Exploring emerging trends: AI-assisted development, edge runtimes, component-driven design systems, and sustainable coding practices.",
+    "tags": ["AI", "Edge", "Design Systems"]
+  },
+  {
+    "slug": "cloud-summit-2024-serverless-security",
+    "title": "Securing Serverless and Edge Architectures",
+    "event": "Cloud Summit 2024",
+    "date": "2024-06-22",
+    "venue": "Expo Center",
+    "city": "Nairobi",
+    "country": "Kenya",
+    "role": "Panelist",
+    "description": "Best practices for securing distributed serverless workloads, identity, secrets rotation, and runtime observability.",
+    "tags": ["Security", "Serverless", "Edge"]
+  },
+  {
+    "slug": "oss-meetup-2024-sustainable-open-source",
+    "title": "Sustainable Open Source Leadership",
+    "event": "Open Source Africa Meetup",
+    "date": "2024-08-10",
+    "venue": "Innovation Hub",
+    "city": "Accra",
+    "country": "Ghana",
+    "role": "Facilitator",
+    "description": "Maintaining healthy communities, funding models, contributor onboarding, and documentation excellence for OSS projects.",
+    "tags": ["Open Source", "Community", "Leadership"]
+  }
+]

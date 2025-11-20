@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "aun",
+    "title": "AMERICAN UNIVERSITY OF NIGERIA",
+    "description": "Educational institution information portal.",
+    "url": "http://aun.edu.ng/",
+    "category": "Education",
+    "year": 2022,
+    "technologies": ["Joomla", "WordPress"],
+    "repository": null
+  },
+{
+    "slug": "aictig",
+    "title": "AICTIG",
+    "description": "African Institute for Cybersecurity and Tele-informatics Governance.",
+    "url": "https://aictig.org/",
+    "category": "ICT",
+    "year": 2024,
+    "technologies": ["WordPress"],
+    "repository": null
+  },
+  {
+    "slug": "smart-reactors",
+    "title": "SMART REACTORS",
+    "description": "Advanced nuclear reactor technology showcase platform.",
+    "url": "https://www.smartreactors.com/",
+    "category": "BioTech Company in Ireland and UK",
+    "year": 2024,
+    "technologies": ["Next.js", "TypeScript", "TailwindCSS"],
+    "repository": null
+  },
+  {
+    "slug": "camaa-media",
+    "title": "CAMAA MEDIA TV",
+    "description": "Digital media agency presence and portfolio.",
+    "url": "https://camaamedia.com.ng/",
+    "category": "Media",
+    "year": 2023,
+    "technologies": ["WordPress", "PHP", "MySQL"],
+    "repository": null
+  },
+    {
+    "slug": "toko-academy",
+    "title": "TOKO ACADEMY",
+    "description": "Learning management platform and course catalog.",
+    "url": "https://tokoacademy.org/",
+    "category": "EdTech",
+    "year": 2024,
+    "technologies": ["Moodle", "PHP"],
+    "repository": null
+  },
+  {
+    "slug": "bronnum",
+    "title": "BRONNUM LUTHERAN SEMINARY",
+    "description": "University website for theological education and resources.",
+    "url": "https://bronnumlutheranseminary.org.ng/",
+    "category": "Corporate",
+    "year": 2024,
+    "technologies": ["WordPress"],
+    "repository": null
+  },
+  {
+    "slug": "rakshak-ngo",
+    "title": "RAKSHAK NGO",
+    "description": "Non-profit organization awareness and donation hub.",
+    "url": "https://www.rakshak.org.in/",
+    "category": "Non-Profit",
+    "year": 2023,
+    "technologies": ["WordPress", "Stripe"],
+    "repository": null
+  },
+  {
+    "slug": "toko-technologies",
+    "title": "TOKO TECHNOLOGIES",
+    "description": "Technology solutions company site with services and contact.",
+    "url": "https://tokotechnologies.carrd.co/",
+    "category": "Corporate",
+    "year": 2024,
+    "technologies": ["WordPress", "JavaScript"],
+    "repository": null
+  },
+  {
+    "slug": "menorah-news",
+    "title": "MENORAH NEWS",
+    "description": "News publishing platform with categorized content.",
+    "url": "https://menorah.com.ng/",
+    "category": "Media",
+    "year": 2023,
+    "technologies": ["WordPress", "Redis", "Nginx"],
+    "repository": null
+  },
+  {
+    "slug": "access-media",
+    "title": "Access Media",
+    "description": "Media and content distribution hub.",
+    "url": "https://danielishakutv.github.io/amda/",
+    "category": "Media",
+    "year": 2024,
+    "technologies": ["HTML", "CSS", "JavaScript"],
+    "repository": "https://github.com/danielishakutv/accessmedia"
+  }
+]
