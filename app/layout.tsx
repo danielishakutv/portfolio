@@ -19,6 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Load the prebuilt Tailwind CSS so dev and GitHub Pages always get processed CSS */}
+        <link
+          rel="stylesheet"
+          href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/tailwind.css`}
+        />
+      </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider>
           <Navigation />
