@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 export default function Speaking() {
   const upcoming = getUpcomingEvents()
-  const past = getPastEvents().slice(0, 4) // show recent past
   const [active, setActive] = useState<typeof speakingEvents[number] | null>(null)
 
   const open = (e: typeof speakingEvents[number]) => setActive(e)
@@ -33,15 +32,6 @@ export default function Speaking() {
             </div>
           </div>
         )}
-
-        <div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Recent</h3>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {past.map(event => (
-              <TalkCard key={event.slug} data={event} onOpen={() => open(event)} />
-            ))}
-          </div>
-        </div>
       </div>
       {active && <EventModal event={active} onClose={close} />}
     </section>

@@ -17,7 +17,7 @@ export default function Footer() {
   const hrefFor = (href: string) => (href.startsWith('http') ? href : base + href)
 
   return (
-    <footer className="mt-20 border-t border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/60 backdrop-blur">
+    <footer className="mt-20 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8 items-start">
           <div className="space-y-3">
