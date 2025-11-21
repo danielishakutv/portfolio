@@ -50,7 +50,10 @@ export default function Speaking() {
 
 function TalkCard({ data, highlight, onOpen }: { data: typeof speakingEvents[number]; highlight?: boolean; onOpen: () => void }) {
   const date = new Date(data.date)
-  const dateDisplay = date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+  // Use a fixed locale so server and client render the same text and
+  // avoid hydration mismatches (different host locales produce different
+  // month/day ordering). 'en-GB' gives "22 Nov 2025" format.
+  const dateDisplay = date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
   return (
     <button onClick={onOpen} className={`text-left w-full bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl hover:shadow-xl transition-shadow focus:outline-none focus:ring-2 focus:ring-amber-400 ${highlight ? 'ring-2 ring-amber-400 dark:ring-amber-500' : ''}`}>
       <div className="mb-4">
@@ -73,7 +76,7 @@ function TalkCard({ data, highlight, onOpen }: { data: typeof speakingEvents[num
 }
 
 function EventModal({ event, onClose }: { event: typeof speakingEvents[number]; onClose: () => void }) {
-  const date = new Date(event.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+  const date = new Date(event.date).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
