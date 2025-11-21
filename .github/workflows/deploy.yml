@@ -13,6 +13,8 @@ permissions:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAGES: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,8 +30,6 @@ jobs:
 
       - name: Build & Export
         run: npm run export
-        env:
-          GITHUB_PAGES: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
