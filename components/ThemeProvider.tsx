@@ -30,27 +30,34 @@ export function ThemeProvider({
   storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (typeof window !== 'undefined' && localStorage.getItem(storageKey)) as Theme || defaultTheme
-  )
+  // Initialize to the defaultTheme on first render so server and client
+  // produce the same HTML during hydration. Read from localStorage only
+  // after the component mounts to avoid hydration mismatches.
+  const [theme, setTheme] = useState<Theme>(() => defaultTheme)
 
   useEffect(() => {
-    const root = window.document.documentElement
+    // read persisted theme after mount
+    const persisted = localStorage.getItem(storageKey) as Theme | null
+    const initial = persisted || defaultTheme
 
+    const root = window.document.documentElement
     root.classList.remove('light', 'dark')
 
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
+    if (initial === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light'
 
       root.classList.add(systemTheme)
+      // update state to the resolved theme so consumers see the chosen value
+      setTheme('system')
       return
     }
 
-    root.classList.add(theme)
-  }, [theme])
+    root.classList.add(initial)
+    setTheme(initial)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const value = {
     theme,
