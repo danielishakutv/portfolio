@@ -18,14 +18,22 @@ export default function Navigation() {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Expertise', href: '/expertise' },
     { name: 'About', href: '/#about' },
     { name: 'Portfolio', href: '/#portfolio' },
-    { name: 'Work', href: '/#portfolio' },
+    { name: 'Work', href: '/projects' },
     { name: 'Speaking', href: '/#speaking' },
-    { name: 'Books', href: '/#books' },
     { name: 'Contact', href: '/contact' },
   ]
+
+  // Ensure links work both locally and when deployed under a base path
+  const base = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  const hrefFor = (href: string) => {
+    // external links are returned as-is
+    if (/^https?:\/\//.test(href)) return href
+    // if href already includes the base, leave it
+    if (base && href.startsWith(base)) return href
+    return `${base}${href}`
+  }
 
   return (
     <nav
@@ -45,7 +53,7 @@ export default function Navigation() {
             {navItems.map((item) => (
               <a
                 key={item.name}
-                href={item.href}
+                href={hrefFor(item.href)}
                 className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 {item.name}
