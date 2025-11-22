@@ -1,6 +1,57 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 export default function ContactPage() {
+  const [showModal, setShowModal] = useState(false)
+
+  useEffect(() => {
+    // Dynamically load jQuery and jquery.form plugin, then bind the submit handler
+    const loadScript = (src: string) =>
+      new Promise<void>((resolve, reject) => {
+        const s = document.createElement('script')
+        s.src = src
+        s.async = true
+        s.onload = () => resolve()
+        s.onerror = () => reject(new Error(`Failed to load ${src}`))
+        document.head.appendChild(s)
+      })
+
+    const jQueryCdn = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'
+    const jQueryFormCdn = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js'
+
+    let mounted = true
+
+    loadScript(jQueryCdn)
+      .then(() => loadScript(jQueryFormCdn))
+      .then(() => {
+        if (!mounted) return
+        const $ = (window as any).jQuery || (window as any).$
+        if (!$) return
+
+        $('#bootstrapForm').on('submit', function (event: any) {
+          event.preventDefault()
+          const extraData: any = {}
+          // Use ajaxSubmit provided by jquery.form
+          ;(this as any).ajaxSubmit({
+            data: extraData,
+            dataType: 'jsonp',
+            error: function () {
+              // Google Forms does not support JSONP; treat error as success
+              setShowModal(true)
+            },
+          })
+        })
+      })
+      .catch(() => {
+        // ignore load errors; users can still submit via default POST behavior
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [])
+
   return (
     <main className="pt-24 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-3xl mx-auto px-6">
@@ -13,83 +64,83 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <form className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent"
-                placeholder="Your name"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent"
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-          </div>
+        {/* Google Form - DO NOT CHANGE IDs, names or endpoint */}
+        <form
+          action="https://docs.google.com/forms/d/e/1FAIpQLScq2CuXrBqHINVPEukIoZu5U3Y9lSwnN9PR30oRFhhvDUrSKA/formResponse"
+          target="_self"
+          id="bootstrapForm"
+          method="POST"
+        >
+          <fieldset>
+            <h2 className="sr-only">Contact Form on Portfolio Website</h2>
+          </fieldset>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent"
-                placeholder="Project brief, consultation, etc."
-              />
+          <fieldset>
+            <legend htmlFor="39647405">Name</legend>
+            <div className="form-group">
+              <input id="952164786" type="text" name="entry.952164786" className="form-control w-full px-4 py-3 rounded-lg border" required />
             </div>
-            <div>
-              <label htmlFor="budget" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Budget (optional)
-              </label>
-              <select
-                id="budget"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Select a range
-                </option>
-                <option value="lt5">Less than $5,000</option>
-                <option value="5to15">$5,000 – $15,000</option>
-                <option value="15to50">$15,000 – $50,000</option>
-                <option value="gt50">More than $50,000</option>
-              </select>
+          </fieldset>
+
+          <fieldset>
+            <legend htmlFor="1168891388">Email</legend>
+            <div className="form-group">
+              <input id="134509771" type="text" name="entry.134509771" className="form-control w-full px-4 py-3 rounded-lg border" required />
             </div>
-          </div>
+          </fieldset>
 
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              rows={6}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-900 dark:focus:ring-white focus:border-transparent"
-              placeholder="Tell me about your goals, timeline, and success criteria."
-              required
-            />
-          </div>
+          <fieldset>
+            <legend htmlFor="1206902817">Phone (Optional)</legend>
+            <div className="form-group">
+              <input id="1157405561" type="text" name="entry.1157405561" className="form-control w-full px-4 py-3 rounded-lg border" />
+            </div>
+          </fieldset>
 
-          <button type="submit" className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-4 rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
-            Send Message
-          </button>
+          <fieldset>
+            <legend htmlFor="1334432677">Organization / Company (Optional)</legend>
+            <div className="form-group">
+              <input id="1097748670" type="text" name="entry.1097748670" className="form-control w-full px-4 py-3 rounded-lg border" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend htmlFor="600812440">Subject</legend>
+            <div className="form-group">
+              <input id="844904308" type="text" name="entry.844904308" className="form-control w-full px-4 py-3 rounded-lg border" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend htmlFor="2082728613">Message</legend>
+            <div className="form-group">
+              <textarea id="1411447157" name="entry.1411447157" className="form-control w-full px-4 py-3 rounded-lg border" />
+            </div>
+          </fieldset>
+
+          <input type="hidden" name="fvv" value="1" />
+          <input type="hidden" name="fbzx" value="5145165369736482462" />
+          <input type="hidden" name="pageHistory" value="0" />
+
+          <div className="mt-6">
+            <input className="btn btn-primary bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 rounded-lg" type="submit" value="Submit" />
+          </div>
         </form>
+
+        {/* Modal shown after successful submission (or when JSONP fails) */}
+        {showModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
+            <div className="absolute inset-0 bg-black/50" onClick={() => setShowModal(false)} />
+            <div className="relative bg-white dark:bg-gray-900 text-gray-900 dark:text-white rounded-lg p-8 max-w-md w-full shadow-lg">
+              <h3 className="text-lg font-semibold mb-2">Message sent</h3>
+              <p className="mb-4">Thanks — your message has been submitted. I will get back to you shortly.</p>
+              <div className="text-right">
+                <button onClick={() => setShowModal(false)} className="px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   )
