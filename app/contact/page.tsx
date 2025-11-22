@@ -21,6 +21,23 @@ export default function ContactPage() {
     const jQueryFormCdn = 'https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js'
 
     let mounted = true
+    // Create a hidden iframe fallback so we can submit without navigating away
+    const frameName = 'gh_submit_frame'
+    let submitFrame: HTMLIFrameElement | null = document.getElementsByName(frameName)[0] as HTMLIFrameElement | null
+    if (!submitFrame) {
+      submitFrame = document.createElement('iframe')
+      submitFrame.name = frameName
+      submitFrame.style.display = 'none'
+      document.body.appendChild(submitFrame)
+    }
+    let submitting = false
+    const onFrameLoad = () => {
+      if (submitting) {
+        submitting = false
+        setShowModal(true)
+      }
+    }
+    submitFrame.addEventListener('load', onFrameLoad)
 
     loadScript(jQueryCdn)
       .then(() => loadScript(jQueryFormCdn))
@@ -32,6 +49,9 @@ export default function ContactPage() {
         $('#bootstrapForm').on('submit', function (event: any) {
           event.preventDefault()
           const extraData: any = {}
+          // Ensure the form posts into the hidden iframe so we don't navigate away
+          try { (this as HTMLFormElement).target = frameName } catch (e) {}
+          submitting = true
           // Use ajaxSubmit provided by jquery.form — call on jQuery-wrapped element
           const $form = (this && (window as any).jQuery) ? (window as any).jQuery(this) : null
           if ($form && (typeof $form.ajaxSubmit === 'function')) {
@@ -40,12 +60,13 @@ export default function ContactPage() {
               dataType: 'jsonp',
               error: function () {
                 // Google Forms does not support JSONP; treat error as success
+                submitting = false
                 setShowModal(true)
               },
             })
           } else {
-            // Fallback: submit normally which will navigate away — still posts to Google Forms
-            (this as HTMLFormElement).submit()
+            // Fallback: submit into the hidden iframe — onload will show modal
+            try { (this as HTMLFormElement).submit() } catch (e) { submitting = false }
           }
         })
       })
