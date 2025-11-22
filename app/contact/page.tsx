@@ -32,15 +32,21 @@ export default function ContactPage() {
         $('#bootstrapForm').on('submit', function (event: any) {
           event.preventDefault()
           const extraData: any = {}
-          // Use ajaxSubmit provided by jquery.form
-          ;(this as any).ajaxSubmit({
-            data: extraData,
-            dataType: 'jsonp',
-            error: function () {
-              // Google Forms does not support JSONP; treat error as success
-              setShowModal(true)
-            },
-          })
+          // Use ajaxSubmit provided by jquery.form — call on jQuery-wrapped element
+          const $form = (this && (window as any).jQuery) ? (window as any).jQuery(this) : null
+          if ($form && (typeof $form.ajaxSubmit === 'function')) {
+            $form.ajaxSubmit({
+              data: extraData,
+              dataType: 'jsonp',
+              error: function () {
+                // Google Forms does not support JSONP; treat error as success
+                setShowModal(true)
+              },
+            })
+          } else {
+            // Fallback: submit normally which will navigate away — still posts to Google Forms
+            (this as HTMLFormElement).submit()
+          }
         })
       })
       .catch(() => {
