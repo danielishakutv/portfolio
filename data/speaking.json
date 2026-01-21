@@ -1,5 +1,44 @@
 [
   {
+    "slug": "tedxyola-2025",
+    "title": "TEDxYola 2025",
+    "event": "TEDxYola 2025",
+    "date": "2025-10-18",
+    "venue": "AUN",
+    "city": "Yola",
+    "country": "Nigeria",
+    "role": "Speaker",
+    "description": "Speaking at TEDxYola 2025 on innovation and technology.",
+    "tags": ["TEDx", "Innovation", "Technology"],
+    "link": "https://tedxyola.ng/speakers"
+  },
+  {
+    "slug": "jpi-impact-conference-2025",
+    "title": "Impact Conference 2025",
+    "event": "Impact Conference 2025",
+    "date": "2025-08-25",
+    "venue": "Jamie Pajoel Int'l, Yola Chapter",
+    "city": "Yola",
+    "country": "Nigeria",
+    "role": "Speaker",
+    "description": "Speaking at the Impact Conference 2025 organized by Jamie Pajoel International, Yola Chapter.",
+    "tags": ["Impact", "Leadership", "Growth"],
+    "image": "https://scontent.fabv2-2.fna.fbcdn.net/v/t39.30808-6/581938524_2437594616674143_7593011350818661933_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHCSEpml1s6M-FBzGRHmfN0VRVdRxtu4ApVFV1HG27gCssgNEgaPu-WaDMhhwfoDzU455rFWKmdPFjnrSbn8ekc&_nc_ohc=ift-Xr-21gUQ7kNvwF7WFYz&_nc_oc=Adkq_N7GMo9qek9kdZ4y2724x-Mda3M6d80UOCjx_y5RETIrqcYrC3cLRSb9LCTjEbs&_nc_zt=23&_nc_ht=scontent.fabv2-2.fna&_nc_gid=s6UdRdXxi1OBQ70m_-KCtA&oh=00_Afpk-fnCAe0YNVtNjV_v6JwfPaCpQ3sse5cYN_nuNKAgVQ&oe=6976D0CB"
+  },
+  {
+    "slug": "ymi-fireside-chat-2025",
+    "title": "YMI Yola Tribe's House Fireside Chat",
+    "event": "Youth Making Impact, Yola Chapter",
+    "date": "2025-12-05",
+    "venue": "YMI Yola Tribe House",
+    "city": "Yola",
+    "country": "Nigeria",
+    "role": "Speaker",
+    "description": "Speaking at the first-ever YMI Yola Tribe's house Fireside Chat.",
+    "tags": ["Community", "Impact", "Youth"],
+    "image": "https://scontent.fabv2-1.fna.fbcdn.net/v/t39.30808-6/529433668_605693189278450_8528778874560902710_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHyX6lNKCZvunUQXQdGy3t_RuWeZ76Z8XdG5Z5nvpnxdwjAnZupKZBsxlRHuDt1-oNA2uRpfsIaBU-WlFkngZ8W&_nc_ohc=07haK4tMftAQ7kNvwHtLTgq&_nc_oc=AdnQp39p972_p5tBzt1_U2CT_nSlYa0zYxuoNZ3bJDH9W9sbV5425hUkKXRpK3IQWQo&_nc_zt=23&_nc_ht=scontent.fabv2-1.fna&_nc_gid=FW6Yo3c3qyUygxK2GyhALg&oh=00_Afo_ZRMfLjJKaRAPxfNm-Po9FfGJjFEl7syy1lwlwRxIlw&oe=6976EB13"
+  },
+  {
     "slug": "jpi-impact-conference-2025-built-to-last",
     "title": "Building Systems that Last: The Future of Sustainable Institutions",
     "event": "JPI Impact Conference 2025",

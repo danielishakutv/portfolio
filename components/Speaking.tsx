@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 export default function Speaking() {
   const upcoming = getUpcomingEvents()
+  const past = getPastEvents()
   const [active, setActive] = useState<typeof speakingEvents[number] | null>(null)
 
   const open = (e: typeof speakingEvents[number]) => setActive(e)
@@ -32,6 +33,17 @@ export default function Speaking() {
             </div>
           </div>
         )}
+
+        {past.length > 0 && (
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Past Events</h3>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {past.map(event => (
+                <TalkCard key={event.slug} data={event} onOpen={() => open(event)} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       {active && <EventModal event={active} onClose={close} />}
     </section>
@@ -40,26 +52,30 @@ export default function Speaking() {
 
 function TalkCard({ data, highlight, onOpen }: { data: typeof speakingEvents[number]; highlight?: boolean; onOpen: () => void }) {
   const date = new Date(data.date)
-  // Use a fixed locale so server and client render the same text and
-  // avoid hydration mismatches (different host locales produce different
-  // month/day ordering). 'en-GB' gives "22 Nov 2025" format.
   const dateDisplay = date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
   return (
-    <button onClick={onOpen} className={`text-left w-full bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl hover:shadow-xl transition-shadow focus:outline-none focus:ring-2 focus:ring-amber-400 ${highlight ? 'ring-2 ring-amber-400 dark:ring-amber-500' : ''}`}>
-      <div className="mb-4">
-        <span className="text-sm text-gray-500 dark:text-gray-400">{dateDisplay}</span>
-      </div>
-      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{data.title}</h3>
-      <p className="text-gray-700 dark:text-gray-300 font-medium mb-2">{data.event}</p>
-      <p className="text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">📍 {data.venue}, {data.city}, {data.country}</p>
-      <p className="text-xs text-amber-600 dark:text-amber-400 mb-4 font-semibold">Role: {data.role}</p>
-      <p className="text-gray-500 dark:text-gray-400 text-sm italic mb-4">Tap to view details</p>
-      <div className="flex flex-wrap gap-2">
-        {data.tags.map(tag => (
-          <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full">
-            {tag}
-          </span>
-        ))}
+    <button onClick={onOpen} className={`text-left w-full bg-gray-50 dark:bg-gray-800 rounded-2xl hover:shadow-xl transition-shadow focus:outline-none focus:ring-2 focus:ring-amber-400 overflow-hidden ${highlight ? 'ring-2 ring-amber-400 dark:ring-amber-500' : ''}`}>
+      {data.image && (
+        <div className="aspect-video w-full overflow-hidden">
+          <img src={data.image} alt={data.title} className="w-full h-full object-cover" />
+        </div>
+      )}
+      <div className="p-8">
+        <div className="mb-4">
+          <span className="text-sm text-gray-500 dark:text-gray-400">{dateDisplay}</span>
+        </div>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{data.title}</h3>
+        <p className="text-gray-700 dark:text-gray-300 font-medium mb-2">{data.event}</p>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 flex items-center gap-1">📍 {data.venue}, {data.city}, {data.country}</p>
+        <p className="text-xs text-amber-600 dark:text-amber-400 mb-4 font-semibold">Role: {data.role}</p>
+        <p className="text-gray-500 dark:text-gray-400 text-sm italic mb-4">Tap to view details</p>
+        <div className="flex flex-wrap gap-2">
+          {data.tags.map(tag => (
+            <span key={tag} className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
     </button>
   )

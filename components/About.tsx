@@ -20,6 +20,9 @@ export default function About() {
               Beyond coding, I'm passionate about sharing knowledge through writing and speaking. I've authored books on web development and regularly speak at tech conferences across Africa and beyond.
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300">
+               I am also the Curator for <a href="https://tedxyola.ng/about" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">TEDxYola 2025</a> and <a href="https://tedxyola.com/" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">2026</a>, bringing transformative ideas to my community. You can find my official TED profile <a href="https://www.ted.com/profiles/33401769/about" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:underline">here</a>.
+            </p>
+            <p className="text-lg text-gray-700 dark:text-gray-300">
               When I'm not coding, you can find me exploring new technologies, mentoring aspiring developers, or working on my latest entrepreneurial venture.
             </p>
           </div>

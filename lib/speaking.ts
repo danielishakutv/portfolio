@@ -11,18 +11,22 @@ export interface SpeakingEvent {
   role: string
   description: string
   tags: string[]
+  image?: string
+  link?: string
 }
 
 export const speakingEvents: SpeakingEvent[] = speakingData as SpeakingEvent[]
 
 export function getUpcomingEvents(reference: Date = new Date()): SpeakingEvent[] {
   const refTs = reference.getTime()
-  return speakingEvents.filter(e => new Date(e.date).getTime() >= refTs)
+  return speakingEvents
+    .filter(e => new Date(e.date).getTime() >= refTs)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 }
 
 export function getPastEvents(reference: Date = new Date()): SpeakingEvent[] {
   const refTs = reference.getTime()
-  return speakingEvents.filter(e => new Date(e.date).getTime() < refTs)
+  return speakingEvents
+    .filter(e => new Date(e.date).getTime() < refTs)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
