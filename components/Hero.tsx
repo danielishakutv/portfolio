@@ -39,7 +39,7 @@ export default function Hero() {
             <div className="relative w-full max-w-md mx-auto">
               <div className="aspect-[3/4] bg-gradient-to-br from-amber-200 to-amber-100 dark:from-amber-800 dark:to-amber-900 rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://media.licdn.com/dms/image/v2/D4D03AQHYQpsozwFp0Q/profile-displayphoto-crop_800_800/B4DZqNofNpGsAI-/0/1763312793214?e=1764806400&v=beta&t=yPFx1-ptDY1Rg1Vbd4ZEpKGwjoJ2c_EyJFudT2mXAlw"
+                  src="https://tedxyola.com/daniel/Daniel%20Ishaku%20web%20developer%20profile%20image.png"
                   alt="Daniel Ishaku"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover"
